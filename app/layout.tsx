@@ -9,7 +9,6 @@ import { Theme, ThemePanel } from '@radix-ui/themes';
 
 const inter = Inter({
   subsets: ['latin'],
-  display: 'swap',
   variable: '--font-inter',
 });
 
