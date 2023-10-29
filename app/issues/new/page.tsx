@@ -19,8 +19,8 @@ type IssueForm = z.infer<typeof createIssueSchema>;
 const NewIssuePage = () => {
   const [error, setIsError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-
   const router = useRouter();
+
   const {
     register,
     control,
@@ -30,6 +30,18 @@ const NewIssuePage = () => {
     resolver: zodResolver(createIssueSchema),
   });
 
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      setIsSubmitting(true);
+      await axios.post('/api/issues', data);
+      setIsSubmitting(false);
+      router.push('/issues');
+    } catch (error) {
+      setIsSubmitting(false);
+      setIsError('Something is going unexprected');
+    }
+  });
+
   return (
     <div className="max-w-xl">
       {error && (
@@ -37,20 +49,7 @@ const NewIssuePage = () => {
           <Callout.Text>{error}</Callout.Text>
         </Callout.Root>
       )}
-      <form
-        className="space-y-3"
-        onSubmit={handleSubmit(async (data) => {
-          try {
-            setIsSubmitting(true);
-            await axios.post('/api/issues', data);
-          } catch (error) {
-            setIsError('Something is going unexprected');
-          } finally {
-            setIsSubmitting(false);
-            router.push('/issues');
-          }
-        })}
-      >
+      <form className="space-y-3" onSubmit={onSubmit}>
         <TextField.Root>
           <TextField.Input
             placeholder="Title"
