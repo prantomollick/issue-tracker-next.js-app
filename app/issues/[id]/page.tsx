@@ -1,8 +1,9 @@
-import React from 'react';
+import IssueStatusBadge from '@/app/components/IssueStatusBadge';
 import prisma from '@/prisma/client';
 import { Card, Flex, Heading, Text } from '@radix-ui/themes';
+import delay from 'delay';
 import { notFound } from 'next/navigation';
-import IssueStatusBadge from '@/app/components/IssueStatusBadge';
+import React from 'react';
 import ReactMarkdown from 'react-markdown';
 
 interface IssueDetailPageProps {
@@ -18,6 +19,7 @@ const IssueDetailPage: React.FC<IssueDetailPageProps> = async ({ params }) => {
     },
   });
 
+  await delay(1000);
   if (!issue) {
     notFound();
   }
