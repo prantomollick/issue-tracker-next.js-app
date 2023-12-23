@@ -4,6 +4,7 @@ import 'easymde/dist/easymde.min.css';
 
 import React, { useState } from 'react';
 import { TextField, Button, Callout, Text } from '@radix-ui/themes';
+import dynamic from 'next/dynamic';
 import { useForm, Controller } from 'react-hook-form';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
@@ -12,8 +13,9 @@ import { createIssueSchema } from '@/app/validationSchemas';
 import { z } from 'zod';
 import ErrorMessage from '@/app/components/ErrorMessage';
 import Spinner from '@/app/components/Spinner';
+import SimpleMDE from '@/app/components/SimpleMDE';
 
-import SimpleMDE from 'react-simplemde-editor';
+// import SimpleMDE from 'react-simplemde-editor';
 
 type IssueForm = z.infer<typeof createIssueSchema>;
 
@@ -62,7 +64,7 @@ const NewIssuePage = () => {
           name="description"
           control={control}
           render={({ field }) => (
-            <SimpleMDE placeholder="Description" {...field} />
+            <SimpleMDE placeholder="Description" fields={field} />
           )}
         />
         <ErrorMessage>{errors.description?.message}</ErrorMessage>
