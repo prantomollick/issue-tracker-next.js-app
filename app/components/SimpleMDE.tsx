@@ -1,18 +1,25 @@
 'use client';
 import dynamic from 'next/dynamic';
-import React from 'react';
+import React, { ForwardRefRenderFunction } from 'react';
+import { ControllerRenderProps } from 'react-hook-form';
 const SimpleMDENext = dynamic(() => import('react-simplemde-editor'), {
   ssr: false,
 });
 
 interface SimpleMDEProps {
   placeholder: string;
-  fields: object;
+  fields: ControllerRenderProps<
+    {
+      title: string;
+      description: string;
+    },
+    'description'
+  >;
 }
 
 const SimpleMDE = ({ placeholder, fields }: SimpleMDEProps) => {
-  // eslint-disable-next-line
   const { ref, ...allProps } = fields;
+
   return <SimpleMDENext placeholder={placeholder} {...allProps} />;
 };
 

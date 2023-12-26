@@ -4,7 +4,7 @@ import 'easymde/dist/easymde.min.css';
 
 import React, { useState } from 'react';
 import { TextField, Button, Callout, Text } from '@radix-ui/themes';
-import dynamic from 'next/dynamic';
+
 import { useForm, Controller } from 'react-hook-form';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
