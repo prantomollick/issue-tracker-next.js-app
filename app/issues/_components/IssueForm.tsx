@@ -44,6 +44,7 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
       }
       setIsSubmitting(false);
       router.push('/issues');
+      router.refresh();
     } catch (error) {
       setIsSubmitting(false);
       setIsError('Something is going unexprected');
