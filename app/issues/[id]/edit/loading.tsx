@@ -1,7 +1,2 @@
-import React from 'react';
-
-const loading = () => {
-  return <div>loading</div>;
-};
-
-export default loading;
+import IssueFormSkeleton from '../../_components/IssueFormSkeleton';
+export default IssueFormSkeleton;
