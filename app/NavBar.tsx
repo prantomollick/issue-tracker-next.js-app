@@ -1,4 +1,5 @@
 'use client';
+import Skeleton from '@/app/components/Skeleton';
 import { useSelectedLayoutSegments } from 'next/navigation';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -64,7 +65,7 @@ const NavLinks = () => {
 const AuthStatus = () => {
   const { status, data: session } = useSession();
 
-  if (status === 'loading') return null;
+  if (status === 'loading') return <Skeleton width="3rem" />;
 
   if (status === 'unauthenticated') {
     return (
