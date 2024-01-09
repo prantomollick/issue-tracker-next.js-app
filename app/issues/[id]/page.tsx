@@ -26,7 +26,6 @@ const IssueDetailPage: React.FC<IssueDetailPageProps> = async ({ params }) => {
     },
   });
 
-  await delay(1000);
   if (!issue) {
     notFound();
   }
@@ -39,7 +38,7 @@ const IssueDetailPage: React.FC<IssueDetailPageProps> = async ({ params }) => {
       {session && (
         <Box>
           <Flex direction="column" gap="4">
-            <AssigneeSelect />
+            <AssigneeSelect issue={issue} />
             <EditIssueButton issueId={issue.id} />
             <DeleteIssueButton issueId={issue.id} />
           </Flex>
