@@ -5,6 +5,7 @@ import './theme-config.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import NavBar from './NavBar';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Container, Theme, ThemePanel } from '@radix-ui/themes';
 import NextAuthProvider from './auth/NextAuthProvider';
 import QueryClientProvider from './QueryClientProvider';
@@ -36,6 +37,7 @@ export default function RootLayout({
               </main>
             </Theme>
           </NextAuthProvider>
+          <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </body>
     </html>
