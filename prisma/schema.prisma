@@ -10,6 +10,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// datasource db {
+//   provider = "sqlite"
+//   url      = "file:./dev.db"
+// }
+
+
 model Issue {
   id               Int      @id @default(autoincrement())
   title            String   @db.VarChar(255)
