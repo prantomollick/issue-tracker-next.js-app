@@ -1,7 +1,7 @@
 import prisma from '@/prisma/client';
 import { Box, Flex, Grid } from '@radix-ui/themes';
 import { notFound } from 'next/navigation';
-import React from 'react';
+import React, { cache } from 'react';
 
 import authOptions from '@/app/auth/authOptions';
 import { Metadata } from 'next';
@@ -16,16 +16,16 @@ interface Props {
   params: { id: string };
 }
 
+const fetchUsers = cache((issueId: number) =>
+  prisma.issue.findUnique({ where: { id: issueId } }),
+);
+
 const IssueDetailPage = async ({ params }: Props) => {
   const session = await getServerSession(authOptions);
 
   // if (typeof params.id !== 'number') notFound();
 
-  const issue = await prisma.issue.findUnique({
-    where: {
-      id: parseInt(params.id),
-    },
-  });
+  const issue = await fetchUsers(parseInt(params.id));
 
   if (!issue) {
     notFound();
@@ -50,9 +50,7 @@ const IssueDetailPage = async ({ params }: Props) => {
 };
 
 export async function generateMetadata({ params }: Props) {
-  const issue = await prisma.issue.findUnique({
-    where: { id: parseInt(params.id) },
-  });
+  const issue = await fetchUsers(parseInt(params.id));
 
   return {
     title: issue?.title,
