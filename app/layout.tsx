@@ -37,7 +37,6 @@ export default function RootLayout({
               </main>
             </Theme>
           </NextAuthProvider>
-          <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </body>
     </html>
