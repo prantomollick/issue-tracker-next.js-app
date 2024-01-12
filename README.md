@@ -37,6 +37,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ```bash
 DATABASE_URL="mysql://janedoe:mypassword@localhost:3306/mydb"
 ```
+### After Mysql Connection setup with prisma
+```bash
+prisma migrate dev
+```
 
 ### Configure Next-auth and provider Google
 
